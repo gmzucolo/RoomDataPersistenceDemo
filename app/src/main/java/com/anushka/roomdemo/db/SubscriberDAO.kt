@@ -3,6 +3,7 @@ package com.anushka.roomdemo.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
+//TODO: Step 2: Create a DAO interface for database operations (CRUD)
 @Dao
 interface SubscriberDAO {
 

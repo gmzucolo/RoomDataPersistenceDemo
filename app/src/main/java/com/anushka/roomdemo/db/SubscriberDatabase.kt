@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+//TODO: Step 4: Create a database class
 @Database(entities = [Subscriber::class], version = 1)
 abstract class SubscriberDatabase : RoomDatabase() {
 

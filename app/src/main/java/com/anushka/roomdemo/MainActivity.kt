@@ -1,11 +1,11 @@
 package com.anushka.roomdemo
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anushka.roomdemo.databinding.ActivityMainBinding
 import com.anushka.roomdemo.db.SubscriberDatabase
 import com.anushka.roomdemo.db.SubscriberRepository
@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        //TODO: Step 7: Initialize the ViewModel and ViewModelFactory
         val dao = SubscriberDatabase.getInstance(application).subscriberDAO
         val repository = SubscriberRepository(dao)
         val factory = SubscriberViewModelFactory(repository)
@@ -28,12 +29,17 @@ class MainActivity : AppCompatActivity() {
         binding.mViewModel = subscriberViewModel
         binding.lifecycleOwner = this
 
+        initRecyclerView()
+    }
+
+    private fun initRecyclerView() {
+        binding.subscriberRecyclerView.layoutManager = LinearLayoutManager(this)
         displaySubscribersList()
     }
 
     private fun displaySubscribersList() {
         subscriberViewModel.subscribers.observe(this, Observer {
-            Log.i("MYTAG", it.toString())
+            binding.subscriberRecyclerView.adapter = MRecyclerViewAdapter(it)
         })
     }
 }

@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+//TODO: Step 5: Create a ViewModel class for database operations (CRUD)
 class SubscriberViewModel(private val repository: SubscriberRepository) : ViewModel() {
 
     val subscribers = repository.subscribers

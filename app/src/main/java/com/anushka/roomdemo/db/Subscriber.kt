@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//TODO: Step 1: Create a data class for the table (Entity)
 @Entity(tableName = "subscriber_data_table")
 data class Subscriber (
 

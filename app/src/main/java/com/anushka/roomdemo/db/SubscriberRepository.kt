@@ -1,5 +1,6 @@
 package com.anushka.roomdemo.db
 
+//TODO: Step 3: Create a repository class for database operations (CRUD)
 class SubscriberRepository(private val dao : SubscriberDAO) {
 
     val subscribers = dao.getAllSubscribers()
