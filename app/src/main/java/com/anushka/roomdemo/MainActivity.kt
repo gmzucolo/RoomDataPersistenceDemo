@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anushka.roomdemo.databinding.ActivityMainBinding
+import com.anushka.roomdemo.db.Subscriber
 import com.anushka.roomdemo.db.SubscriberDatabase
 import com.anushka.roomdemo.db.SubscriberRepository
 import com.anushka.roomdemo.db.SubscriberViewModel
@@ -39,7 +40,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun displaySubscribersList() {
         subscriberViewModel.subscribers.observe(this, Observer {
-            binding.subscriberRecyclerView.adapter = MRecyclerViewAdapter(it)
+            binding.subscriberRecyclerView.adapter =
+                MRecyclerViewAdapter(it) { selectedItem: Subscriber ->
+                    listItemClicked(
+                        selectedItem
+                    )
+                }
         })
+    }
+
+    private fun listItemClicked(subscriber: Subscriber) {
+        subscriberViewModel.initUpdateAndDelete(subscriber)
     }
 }

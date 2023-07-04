@@ -13,9 +13,9 @@ data class Subscriber (
     val id : Int,
 
     @ColumnInfo(name = "subscriber_id")
-    val name : String,
+    var name : String,
 
     @ColumnInfo(name = "subscriber_email")
-    val email : String
+    var email : String
 
 )
