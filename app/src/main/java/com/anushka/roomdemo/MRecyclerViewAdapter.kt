@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anushka.roomdemo.databinding.ListItemBinding
 import com.anushka.roomdemo.db.Subscriber
 
-class MRecyclerViewAdapter(
-    private val subscribersList: List<Subscriber>,
-    private val clickListener: (Subscriber) -> Unit
-) :
+class MRecyclerViewAdapter(private val clickListener: (Subscriber) -> Unit) :
     RecyclerView.Adapter<MViewHolder>() {
+
+    private val subscribersList = ArrayList<Subscriber>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: ListItemBinding =
@@ -25,6 +25,11 @@ class MRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: MViewHolder, position: Int) {
         holder.bind(subscribersList[position], clickListener)
+    }
+
+    fun setList(subscribers: List<Subscriber>) {
+        subscribersList.clear()
+        subscribersList.addAll(subscribers)
     }
 }
 
