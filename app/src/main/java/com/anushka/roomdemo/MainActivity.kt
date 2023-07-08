@@ -1,6 +1,7 @@
 package com.anushka.roomdemo
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -31,6 +32,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         initRecyclerView()
+
+        //TODO: Step 11: Observe the status message (LiveData) and display it in a Toast message
+        subscriberViewModel.message.observe(this, Observer { it ->
+            it.getContentIfNotHandled()?.let {
+                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun initRecyclerView() {
